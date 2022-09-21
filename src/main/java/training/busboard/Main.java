@@ -19,8 +19,8 @@ public class Main {
         try {
             Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
             WebTarget busRequest = client.target("https://api.tfl.gov.uk/StopPoint/490008660N/Arrivals");
-            List<busResponses> response = busRequest.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType< List<busResponses> >() {});
-            System.out.println(response);
+            List<BusResponses> response = busRequest.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType< List<BusResponses> >() {});
+          //  System.out.println(response);
         }
         catch(Exception ex) {
             System.out.println("Timeout error or unreachable network error.");
