@@ -9,8 +9,9 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BusResponses {
-    private String stationName;
-    private String destinationName;
+    public static String stationName;
+    public static String destinationName;
+    public static Date expectedArrival;
     
 
 
@@ -32,5 +33,12 @@ public class BusResponses {
 
     public void setDestinationName(String destinationName) {
         this.destinationName = destinationName;
+    }
+
+    public void setExpectedArrival(Date expectedArrival) {
+        this.expectedArrival = expectedArrival;
+    }
+    public void getExpectedArrival(Date expectedArrival) {
+        this.expectedArrival = expectedArrival;
     }
 }
