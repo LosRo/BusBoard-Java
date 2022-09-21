@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,7 +17,7 @@ public class Main {
         try {
             Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
             Scanner scanner = new Scanner(System.in);
-            System.out.println("=======================================================================");
+            System.out.println("===============================================================================");
             System.out.println("Enter the stop code for your bus");
             String userInput = scanner.nextLine();
             String url = ("https://api.tfl.gov.uk/StopPoint/"+userInput+"/Arrivals");
@@ -27,15 +26,10 @@ public class Main {
             // take stop code as input pass param to url 
             List<BusResponses> busResponseList = busRequest.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType< List<BusResponses> >() {});
             busResponseList.stream()
-           // .sorted(Comparator.comparingInt(BusResponses::getTimeToStation))
-            .limit(10)
-            .forEach(bus -> System.out.println(bus.getTimeToStation()));
-            System.out.println("=======================================================================");
-            System.out.println("The name of the station is " + BusResponses.stationName);
-            System.out.println("The destination of this bus is " + BusResponses.destinationName);
-            System.out.println("The expected arrival time is " + BusResponses.expectedArrival);
-            System.out.println("The number of this bus is " + BusResponses.lineId);
-            System.out.println("=======================================================================");
+            .sorted(Comparator.comparingInt(BusResponses::getTimeToStation))
+            .limit(5)
+            .forEach(bus -> System.out.println("===============================================================================\n" + "The number of this bus is " + bus.getLineId() + "\nThe bus will be arriving in " + bus.getTimeToStation() + "s" + "\nThe expected arrival for this bus is " + bus.getExpectedArrival() + "\nThe name of this bus station is " + bus.getStationName() + "\n==============================================================================="));
+       
             
         }
         catch(Exception ex) {      

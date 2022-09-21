@@ -9,11 +9,11 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BusResponses {
-    public static String stationName;
-    public static String destinationName;
-    public static Date expectedArrival;
-    public static int timeToStation;
-    public static String lineId;
+    public  String stationName;
+    public  String destinationName;
+    public  Date expectedArrival;
+    public  int timeToStation;
+    public  String lineId;
     
 
 
