@@ -12,6 +12,8 @@ public class BusResponses {
     public static String stationName;
     public static String destinationName;
     public static Date expectedArrival;
+    public static int timeToStation;
+    public static String lineId;
     
 
 
@@ -38,7 +40,21 @@ public class BusResponses {
     public void setExpectedArrival(Date expectedArrival) {
         this.expectedArrival = expectedArrival;
     }
-    public void getExpectedArrival(Date expectedArrival) {
-        this.expectedArrival = expectedArrival;
+    public Date getExpectedArrival() {
+        return expectedArrival;
     }
+
+    public int getTimeToStation() {
+        return timeToStation;
+    }
+    public void setTimeToStation(int timeToStation) {
+        this.timeToStation = timeToStation;
+    }
+    public String getLineId() {
+        return lineId;
+    }
+    public void setLineId(String lineId) {
+        this.lineId = lineId;
+    }
+    
 }

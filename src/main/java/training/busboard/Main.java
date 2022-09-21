@@ -9,6 +9,8 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,11 +25,16 @@ public class Main {
 
             WebTarget busRequest = client.target(url);
             // take stop code as input pass param to url 
-            busRequest.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType< List<BusResponses> >() {});
+            List<BusResponses> busResponseList = busRequest.request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType< List<BusResponses> >() {});
+            busResponseList.stream()
+           // .sorted(Comparator.comparingInt(BusResponses::getTimeToStation))
+            .limit(10)
+            .forEach(bus -> System.out.println(bus.getTimeToStation()));
             System.out.println("=======================================================================");
             System.out.println("The name of the station is " + BusResponses.stationName);
             System.out.println("The destination of this bus is " + BusResponses.destinationName);
             System.out.println("The expected arrival time is " + BusResponses.expectedArrival);
+            System.out.println("The number of this bus is " + BusResponses.lineId);
             System.out.println("=======================================================================");
             
         }
